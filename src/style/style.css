@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   height: 100%;
   width: 100%;
@@ -62,7 +67,7 @@ body {
   text-transform: uppercase;
 }
 
-/* Steps Container CSS */
+/* Steps CSS */
 
 .stepper {
   display: flex;
@@ -117,4 +122,156 @@ body {
   background: #d7f2e3;
   padding: 13px;
   border-radius: 100px 0 0 100px;
+}
+
+/* Information CSS */
+.information-container {
+  margin: 0 82px 63px 82px;
+  border: 1px solid #d7d7d7;
+}
+
+.information-title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+.information-first-box {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  font-size: 20px;
+  padding: 60px 81px 130px 81px;
+}
+
+.date-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+}
+
+.information-text {
+  appearance: none;
+  background-color: #f4f4f4;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 40px 14px 20px;
+  font-size: 14px;
+  width: 100%;
+  color: #bbbbbb;
+  position: relative;
+  max-width: 320px;
+
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+.information-select {
+  appearance: none;
+  background-color: #f4f4f4;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 40px 14px 20px;
+  font-size: 14px;
+  width: 100%;
+  color: #bbbbbb;
+  position: relative;
+  max-width: 320px;
+
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+.information-date {
+  appearance: none;
+  background-color: #f4f4f4;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 40px 14px 20px;
+  font-size: 14px;
+  width: 100%;
+  color: #bbbbbb;
+  position: relative;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23999" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+.information-button {
+  appearance: none;
+  border-radius: 999px;
+  padding: 14px 40px 14px 20px;
+  font-size: 14px;
+  width: 100%;
+  color: #cacaca;
+  position: relative;
+  max-width: 320px;
+  border: 2px solid #dddddd;
+  background-color: #ffffff;
+
+  font-weight: "Body/Font Weight Regular";
+  font-size: 20px;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+.information-date::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.date-wrapper label {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+  font-size: 14px;
+}
+
+.information-date:focus + label,
+.information-date:not(:placeholder-shown):valid + label {
+  top: 6px;
+  font-size: 10px;
+  color: #666;
+}
+
+.information-second-box {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  padding: 0 81px 78px 81px;
+  gap: 24px;
+}
+
+.information-inputs {
+  display: flex;
+  gap: 32px;
+}
+
+.plus-container {
+  display: flex;
+  gap: 10px;
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 150%;
+  letter-spacing: -1.9%;
+  color: #000000cc;
+  margin-left: 144px;
+  margin-bottom: 88px;
 }
