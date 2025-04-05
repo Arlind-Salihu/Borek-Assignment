@@ -1,12 +1,15 @@
 body {
   height: 100%;
   width: 100%;
+  font-family: "Roboto";
 }
+
+/* Navbar CSS */
 
 .navbar {
   width: 100%;
   height: auto;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .nav-header {
@@ -15,30 +18,103 @@ body {
   align-items: center;
   padding: 10px;
   height: 80px;
+  margin: 0 65px;
 }
 
-.nav-header-items ul,
-.nav-menu ul {
+.nav-help {
   display: flex;
-  justify-content: space-between;
+  gap: 27px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.nav-logo {
+  width: 200px;
+}
+
+.nav-header-items ul {
+  display: flex;
   list-style: none;
   padding: 0;
-  margin: 0; 
-  gap: 20px;
-  width: 70%;
-}
-
-.nav-header-items li,
-.nav-menu li {
-  display: inline-block;
-  padding: 10px 15px;
+  margin: 0;
+  gap: 27px;
+  font-size: 18px;
+  text-transform: uppercase;
 }
 
 .nav-menu {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #F4F4F4;
-  padding: 10px;
-  gap: 30px;
+  background-color: #f4f4f4;
+  gap: 35px;
+  height: 80px;
+  font-size: 20px;
+}
+
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 5px;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+/* Steps Container CSS */
+
+.stepper {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  border-radius: 100px;
+  margin: 150px 144px 87px 144px;
+  border-top: 1px solid #00000080;
+  border-bottom: 1px solid #00000080;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: 1;
+  gap: 32px;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  background: #ddd;
+  color: black;
+  width: 74px;
+  height: 74px;
+  border-radius: 50%;
+  font-size: 32px;
+}
+
+.step.active .step-number {
+  background: black;
+  color: white;
+}
+
+.step.completed .step-number {
+  background: #ddd;
+}
+
+.step-label {
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 140%;
+  letter-spacing: 0%;
+  text-transform: uppercase;
+}
+
+.active {
+  background: #d7f2e3;
+  padding: 13px;
+  border-radius: 100px 0 0 100px;
 }
