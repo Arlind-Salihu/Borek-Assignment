@@ -15,6 +15,7 @@ const Home = () => {
       showComplete: false,
     },
   ]);
+  const [loadingStates, setLoadingStates] = useState(persons.map(() => false));
 
   const isPersonValid = (person) =>
     person.startDate &&
@@ -59,6 +60,43 @@ const Home = () => {
     setActiveStep(2);
   };
 
+  const handleButtonClick = (
+    index,
+    loadingStates,
+    setLoadingStates,
+    actionFunction
+  ) => {
+    setLoadingStates((prevLoadingStates) => {
+      const newLoadingStates = [...prevLoadingStates];
+
+      if (index !== null) {
+        newLoadingStates[index] = true;
+      } else {
+        if (!newLoadingStates.includes(true)) {
+          newLoadingStates[0] = true;
+        }
+      }
+
+      return newLoadingStates;
+    });
+
+    setTimeout(() => {
+      actionFunction(index);
+
+      setLoadingStates((prevLoadingStates) => {
+        const newLoadingStates = [...prevLoadingStates];
+
+        if (index !== null) {
+          newLoadingStates[index] = false;
+        } else {
+          newLoadingStates[0] = false;
+        }
+
+        return newLoadingStates;
+      });
+    }, 1500);
+  };
+
   return (
     <div className="main-container">
       {/* Navbar */}
@@ -90,14 +128,30 @@ const Home = () => {
           </div>
         </div>
         <div className="nav-menu">
-          <a href="#" className="nav-menu-items">Brillen</a>
-          <a href="#" className="nav-menu-items">Sonnenbrillen</a>
-          <a href="#" className="nav-menu-items">Kontaktlinsen</a>
-          <a href="#" className="nav-menu-items">Marken</a>
-          <a href="#" className="nav-menu-items">Boutique</a>
-          <a href="#" className="nav-menu-items nav-active">Kostenloser Sehtest</a>
-          <a href="#" className="nav-menu-items">Stores</a>
-          <a href="#" className="nav-menu-items">Winter Deal</a>
+          <a href="#" className="nav-menu-items">
+            Brillen
+          </a>
+          <a href="#" className="nav-menu-items">
+            Sonnenbrillen
+          </a>
+          <a href="#" className="nav-menu-items">
+            Kontaktlinsen
+          </a>
+          <a href="#" className="nav-menu-items">
+            Marken
+          </a>
+          <a href="#" className="nav-menu-items">
+            Boutique
+          </a>
+          <a href="#" className="nav-menu-items nav-active">
+            Kostenloser Sehtest
+          </a>
+          <a href="#" className="nav-menu-items">
+            Stores
+          </a>
+          <a href="#" className="nav-menu-items">
+            Winter Deal
+          </a>
         </div>
       </div>
       <div className="container">
@@ -142,9 +196,20 @@ const Home = () => {
           <button
             id="completeBtn"
             className="information-input complete-btn"
-            onClick={handleComplete}
+            onClick={() =>
+              handleButtonClick(
+                null,
+                loadingStates,
+                setLoadingStates,
+                handleComplete
+              )
+            }
           >
-            Jetzt Abschließen
+            {loadingStates.includes(true) ? (
+              <span className="spinner"></span>
+            ) : (
+              "Jetzt Abschließen"
+            )}
           </button>
         </div>
       )}

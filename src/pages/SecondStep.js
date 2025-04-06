@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "../style/style.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const SecondStep = ({ setActiveStep }) => {
+  const [loadingStates, setLoadingStates] = useState([false]);
+
   const handleBack = () => {
     setActiveStep(1);
   };
@@ -13,6 +15,18 @@ const SecondStep = ({ setActiveStep }) => {
       position: "top-right",
       autoClose: 3000,
     });
+  };
+
+  const handleButtonClick = (index) => {
+    const newLoadingStates = [...loadingStates];
+    newLoadingStates[index] = true;
+    setLoadingStates(newLoadingStates);
+
+    setTimeout(() => {
+      newLoadingStates[index] = false;
+      setLoadingStates([...newLoadingStates]);
+      handleBack();
+    }, 1500);
   };
 
   return (
@@ -99,6 +113,7 @@ const SecondStep = ({ setActiveStep }) => {
           <input
             type="text"
             id="document"
+            readOnly
             className="information-input application-input application-download"
             placeholder="Alle Dokumente Herunterladen"
             onClick={handleDownload}
@@ -110,9 +125,12 @@ const SecondStep = ({ setActiveStep }) => {
         <button
           id="backBtn"
           className="information-input information-button application-button"
-          onClick={handleBack}
+          onClick={() => {
+            handleButtonClick(0);
+          }}
+          disabled={loadingStates[0]}
         >
-          Zurück
+          {loadingStates[0] ? <span className="spinner"></span> : "Zurück"}
         </button>
         <button
           id="submitBtn"

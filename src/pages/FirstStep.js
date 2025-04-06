@@ -11,6 +11,24 @@ const FirstStep = ({
   addNewPerson,
 }) => {
   const [collapsed, setCollapsed] = useState(persons.map(() => false));
+  const [loadingStates, setLoadingStates] = useState(persons.map(() => false));
+
+  const handleButtonClick = (
+    index,
+    loadingStates,
+    setLoadingStates,
+    handleShowTarife
+  ) => {
+    const newLoadingStates = [...loadingStates];
+    newLoadingStates[index] = true;
+    setLoadingStates(newLoadingStates);
+
+    setTimeout(() => {
+      handleShowTarife(index);
+      newLoadingStates[index] = false;
+      setLoadingStates([...newLoadingStates]);
+    }, 1500);
+  };
 
   const handleActive = () => {
     toast.success("Aktiviert!", {
@@ -123,12 +141,21 @@ const FirstStep = ({
                 className={`information-input information-button ${
                   isPersonValid(person) ? "enabled" : ""
                 }`}
-                disabled={!isPersonValid(person)}
-                onClick={() => {
-                  handleShowTarife(index);
-                }}
+                disabled={!isPersonValid(person) || loadingStates[index]}
+                onClick={() =>
+                  handleButtonClick(
+                    index,
+                    loadingStates,
+                    setLoadingStates,
+                    handleShowTarife
+                  )
+                }
               >
-                Tarife Anzeigen
+                {loadingStates[index] ? (
+                  <span className="spinner"></span>
+                ) : (
+                  "Tarife Anzeigen"
+                )}
               </button>
             </div>
           </div>
