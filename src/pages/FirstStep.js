@@ -32,7 +32,9 @@ const FirstStep = ({
               <p>Informationen zum Online-Abschluss</p>
               <i
                 className={`bi ${
-                  collapsed[index] ? "bi-chevron-down" : "bi-chevron-up"
+                  collapsed[index]
+                    ? "title-icon bi-chevron-down"
+                    : "title-icon bi-chevron-up"
                 }`}
                 onClick={() => toggleCollapse(index)}
               ></i>

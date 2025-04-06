@@ -270,7 +270,11 @@ body,
 }
 
 .information-button {
-  font-size: 14px;
+  font-family: "Roboto";
+  font-weight: Weight Bold;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0%;
   width: 100%;
   color: #cacaca;
   max-width: 320px;

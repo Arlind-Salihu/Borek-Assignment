@@ -128,7 +128,9 @@ const Home = () => {
         )}
 
         {/* Second Step */}
-        {activeStep === 2 && <SecondStep />}
+        {activeStep === 2 && (
+          <SecondStep persons={persons} setActiveStep={setActiveStep} />
+        )}
       </div>
 
       {/* Complete Container */}
