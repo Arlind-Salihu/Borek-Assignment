@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../style/style.css";
 import logo from "../assets/mister-spex-logo.svg";
 
 const Home = () => {
   const [persons, setPersons] = useState([
-    { startDate: "", birthday: "", gender: "" },
+    {
+      startDate: "",
+      birthday: "",
+      gender: "",
+      showThirdBox: false,
+      showComplete: false,
+    },
   ]);
 
   const isPersonValid = (person) =>
@@ -20,11 +26,34 @@ const Home = () => {
   };
 
   const addNewPerson = () => {
-    setPersons([...persons, { startDate: "", birthday: "", gender: "" }]);
+    setPersons([
+      ...persons,
+      {
+        startDate: "",
+        birthday: "",
+        gender: "",
+        showThirdBox: false,
+        showComplete: false,
+      },
+    ]);
+  };
+
+  const handleShowTarife = (index) => {
+    const updatedPersons = persons.map((p, i) =>
+      i === index ? { ...p, showThirdBox: true } : p
+    );
+    setPersons(updatedPersons);
+  };
+
+  const handleShowComplete = (index) => {
+    const updatedPersons = persons.map((p, i) =>
+      i === index ? { ...p, showComplete: !p.showComplete } : p
+    );
+    setPersons(updatedPersons);
   };
 
   return (
-    <div className="body">
+    <div className="main-container">
       {/* Navbar */}
       <div className="navbar">
         <div className="nav-header">
@@ -66,7 +95,6 @@ const Home = () => {
       </div>
       {/* Container */}
       <div className="container">
-        {/* Steps */}
         <div className="stepper">
           <div className="step active">
             <div className="step-number">1</div>
@@ -82,7 +110,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/*Information*/}
+        {/* Information */}
         {persons.map((person, index) => (
           <div className="information-container" key={index}>
             <div className="information-first-box">
@@ -122,7 +150,7 @@ const Home = () => {
 
             <div className="information-second-box">
               <div className="information-title">
-                Personliche Daten der zu versichernden person
+                Personliche Daten der zu versichernden Person
               </div>
               <div className="information-inputs">
                 <input
@@ -155,15 +183,49 @@ const Home = () => {
                 </select>
                 <button
                   id="submitBtn"
-                  className={`information-input information-button submit-btn ${
+                  className={`information-input information-button ${
                     isPersonValid(person) ? "enabled" : ""
                   }`}
                   disabled={!isPersonValid(person)}
+                  onClick={() => handleShowTarife(index)}
                 >
                   Tarife Anzeigen
                 </button>
               </div>
             </div>
+
+            {person.showThirdBox && (
+              <div className="information-third-box">
+                <div className="information-title">Ambulant</div>
+                <div className="information-ambulant">
+                  <label className="checkbox-label" htmlFor="ambulant">
+                    <span className="checkbox-dark-text">
+                      <input
+                        type="checkbox"
+                        name="ambulant"
+                        id="ambulant"
+                        className="tarif-checkbox1"
+                        onClick={() => handleShowComplete(index)}
+                      />
+                      Union Krankenversicherung AG
+                    </span>
+                    <span className="checkbox-light-text">
+                      <input
+                        type="checkbox"
+                        name="ambulant"
+                        id="ambulant"
+                        readOnly
+                        className="tarif-checkbox2"
+                      />
+                      Beitrag ausgewählte(r) Tarif(e): 13,45 EUR / Monat
+                    </span>
+                  </label>
+                  <p>VorsorgePRIVAT</p>
+                  <p>13,45 EUR / Monat</p>
+                  <i className="bi bi-exclamation-circle"></i>
+                </div>
+              </div>
+            )}
           </div>
         ))}
 
@@ -172,6 +234,18 @@ const Home = () => {
           <i className="bi bi-plus-circle"></i>
           Weitere Person versichern
         </div>
+
+        {/* Complete Container Below Plus Button */}
+        {persons.some((person) => person.showComplete) && (
+          <div className="complete-container">
+            <p className="complete-text">
+              Ihr ausgewählter Tarif: Beitrag für eine Person: 13,45 EUR / Monat
+            </p>
+            <button id="completeBtn" className="information-input complete-btn">
+              Jetzt Abschließen
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
