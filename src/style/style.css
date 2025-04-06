@@ -151,79 +151,70 @@ body {
   max-width: 320px;
 }
 
-.information-text {
+.information-input {
   appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   background-color: #f4f4f4;
   border: none;
-  border-radius: 999px;
+  border-radius: 100px;
   padding: 14px 40px 14px 20px;
-  font-size: 14px;
-  width: 100%;
-  color: #bbbbbb;
-  position: relative;
-  max-width: 320px;
-
+  font-size: 20px;
   font-weight: 400;
   font-size: 20px;
   line-height: 140%;
   letter-spacing: 0%;
+  position: relative;
 }
 
 .information-select {
-  appearance: none;
-  background-color: #f4f4f4;
-  border: none;
-  border-radius: 999px;
-  padding: 14px 40px 14px 20px;
-  font-size: 14px;
   width: 100%;
   color: #bbbbbb;
-  position: relative;
   max-width: 320px;
-
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 140%;
-  letter-spacing: 0%;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='2' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 12px;
+  cursor: pointer;
 }
 
 .information-date {
   appearance: none;
   background-color: #f4f4f4;
   border: none;
-  border-radius: 999px;
-  padding: 14px 40px 14px 20px;
-  font-size: 14px;
+  border-radius: 100px;
   width: 100%;
   color: #bbbbbb;
-  position: relative;
   background-image: url('data:image/svg+xml;utf8,<svg fill="%23999" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>');
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 20px;
+}
 
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 140%;
-  letter-spacing: 0%;
+.information-date-2 {
+  max-width: 320px;
+  width: 100%;
 }
 
 .information-button {
-  appearance: none;
-  border-radius: 999px;
-  padding: 14px 40px 14px 20px;
   font-size: 14px;
   width: 100%;
   color: #cacaca;
-  position: relative;
   max-width: 320px;
   border: 2px solid #dddddd;
   background-color: #ffffff;
-
   font-weight: "Body/Font Weight Regular";
-  font-size: 20px;
   line-height: 140%;
   letter-spacing: 0%;
+  cursor: not-allowed;
+  transition: background-color 0.3s ease;
+}
+
+.information-button.enabled {
+  border: 2px solid #00b066;
+  background-color: #00b066;
+  color: white;
+  cursor: pointer;
 }
 
 .information-date::-webkit-calendar-picker-indicator {
@@ -261,6 +252,10 @@ body {
 .information-inputs {
   display: flex;
   gap: 32px;
+}
+
+.typed {
+  color: #000000;
 }
 
 .plus-container {

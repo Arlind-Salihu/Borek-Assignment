@@ -1,8 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../style/style.css";
 import logo from "../assets/mister-spex-logo.svg";
 
 const Home = () => {
+  const [persons, setPersons] = useState([
+    { startDate: "", birthday: "", gender: "" },
+  ]);
+
+  const isPersonValid = (person) =>
+    person.startDate &&
+    person.birthday &&
+    person.gender &&
+    person.gender !== "Gechlecht";
+
+  const handlePersonChange = (index, field, value) => {
+    const updatedPersons = [...persons];
+    updatedPersons[index][field] = value;
+    setPersons(updatedPersons);
+  };
+
+  const addNewPerson = () => {
+    setPersons([...persons, { startDate: "", birthday: "", gender: "" }]);
+  };
+
   return (
     <div className="body">
       {/* Navbar */}
@@ -63,63 +83,92 @@ const Home = () => {
         </div>
 
         {/*Information*/}
-        <div className="information-container">
-          <div className="information-first-box">
-            <div className="information-title">
-              Informationen zum Online-Abschluss
+        {persons.map((person, index) => (
+          <div className="information-container" key={index}>
+            <div className="information-first-box">
+              <div className="information-title">
+                Informationen zum Online-Abschluss
+              </div>
+              <div className="information-description">
+                Eine Rückdatierung auf den 01. des Monats ist bis zum 15. des
+                Monats möglich. Online Abschlüsse sind möglich für:
+                <br />
+                <br />
+                Erwachsene ab 18 Jahren (Versicherungsnehmer*in = versicherte
+                Person)
+                <br />
+                Kinder bis 15 Jahre (abweichende(r) sicherungsnehmer*in)
+                <br />
+                Online Abschlüsse für 16 und 17 Jährige sind aktuell nicht
+                möglich (PDF-Antrag nutzen)
+              </div>
+              <div className="information-date-box">
+                <div className="date-wrapper">
+                  <input
+                    type="date"
+                    id="startDate"
+                    className={`information-input information-date ${
+                      person.startDate ? "typed" : ""
+                    }`}
+                    placeholder="Beginn der Versicherung"
+                    value={person.startDate}
+                    onChange={(e) =>
+                      handlePersonChange(index, "startDate", e.target.value)
+                    }
+                  />
+                </div>
+              </div>
             </div>
-            <div className="information-description">
-              Eine Rückdatierung auf den 01. des Monats ist bis zum 15. des
-              Monats möglich. Online Abschlüsse sind möglich für:
-              <br />
-              <br />
-              Erwachsene ab 18 Jahren (Versicherungsnehmer*in = versicherte
-              Person)
-              <br />
-              Kinder bis 15 Jahre (abweichende(r) sicherungsnehmer*in)
-              <br />
-              Online Abschlüsse für 16 und 17 Jährige sind aktuell nicht möglich
-              (PDF-Antrag nutzen)
-            </div>
-            <div className="information-date-box">
-              <div className="date-wrapper">
+
+            <div className="information-second-box">
+              <div className="information-title">
+                Personliche Daten der zu versichernden person
+              </div>
+              <div className="information-inputs">
                 <input
                   type="date"
-                  id="start-date"
-                  className="information-date"
-                  placeholder="Beginn der Versicherung"
+                  id="birthday"
+                  className={`information-input information-date information-date-2 ${
+                    person.birthday ? "typed" : ""
+                  }`}
+                  placeholder="Geburtsdatum"
+                  value={person.birthday}
+                  onChange={(e) =>
+                    handlePersonChange(index, "birthday", e.target.value)
+                  }
                 />
+                <select
+                  id="gender"
+                  className={`information-input information-select ${
+                    person.gender && person.gender !== "Gechlecht"
+                      ? "typed"
+                      : ""
+                  }`}
+                  value={person.gender}
+                  onChange={(e) =>
+                    handlePersonChange(index, "gender", e.target.value)
+                  }
+                >
+                  <option value="Gechlecht">Geschlecht</option>
+                  <option value="weiblich">Weiblich</option>
+                  <option value="männlich">Männlich</option>
+                </select>
+                <button
+                  id="submitBtn"
+                  className={`information-input information-button submit-btn ${
+                    isPersonValid(person) ? "enabled" : ""
+                  }`}
+                  disabled={!isPersonValid(person)}
+                >
+                  Tarife Anzeigen
+                </button>
               </div>
             </div>
           </div>
-          <div className="information-second-box">
-            <div className="information-title">
-              Personliche Daten der zu versichernden person
-            </div>
-            <div className="information-inputs">
-              <input
-                type="text"
-                id="geburtsdatum"
-                className="information-text"
-                placeholder="Geburtsdatum"
-              />
-              <input
-                type="select"
-                id="gechlecht"
-                className="information-select"
-                placeholder="Gechlecht"
-              />
-              <input
-                type="button"
-                value="Tarife Anzeigen"
-                className="information-button"
-              />
-            </div>
-          </div>
-        </div>
+        ))}
 
-        {/* Plus button */}
-        <div className="plus-container">
+        {/* Plus Button */}
+        <div className="plus-container" onClick={addNewPerson}>
           <i className="bi bi-plus-circle"></i>
           Weitere Person versichern
         </div>
