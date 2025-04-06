@@ -90,14 +90,14 @@ const Home = () => {
           </div>
         </div>
         <div className="nav-menu">
-          <a>Brillen</a>
-          <a>Sonnenbrillen</a>
-          <a>Kontaktlinsen</a>
-          <a>Marken</a>
-          <a>Boutique</a>
-          <a>Kostenloser Sehtest</a>
-          <a>Stores</a>
-          <a>Winter Deal</a>
+          <a href="#" className="nav-menu-items">Brillen</a>
+          <a href="#" className="nav-menu-items">Sonnenbrillen</a>
+          <a href="#" className="nav-menu-items">Kontaktlinsen</a>
+          <a href="#" className="nav-menu-items">Marken</a>
+          <a href="#" className="nav-menu-items">Boutique</a>
+          <a href="#" className="nav-menu-items nav-active">Kostenloser Sehtest</a>
+          <a href="#" className="nav-menu-items">Stores</a>
+          <a href="#" className="nav-menu-items">Winter Deal</a>
         </div>
       </div>
       <div className="container">

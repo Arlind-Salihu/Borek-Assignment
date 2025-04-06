@@ -1,12 +1,20 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   scroll-behavior: smooth;
 }
 
 @font-face {
   font-family: "Roboto";
   src: url("../assets/fonts/Roboto-Regular.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "RobotoBold";
+  src: url("../assets/fonts/Roboto-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
@@ -23,10 +31,15 @@ body,
   height: 100%;
   width: 100%;
   font-family: "Roboto";
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  padding: 0 15px;
 }
 
 /* Navbar CSS */
-
 .navbar {
   width: 100%;
   height: auto;
@@ -47,10 +60,12 @@ body,
   gap: 27px;
   font-size: 18px;
   text-transform: uppercase;
+  align-items: center;
 }
 
 .nav-logo {
   width: 200px;
+  height: auto;
 }
 
 .nav-header-items ul {
@@ -71,6 +86,22 @@ body,
   gap: 35px;
   height: 80px;
   font-size: 20px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.nav-menu a {
+  white-space: nowrap;
+  padding: 5px;
+}
+
+.nav-menu-items {
+  text-decoration: none;
+  color: #000000;
+}
+
+.nav-active {
+  color: #00b066;
 }
 
 .nav-menu ul {
@@ -81,18 +112,21 @@ body,
   gap: 5px;
   font-size: 18px;
   text-transform: uppercase;
+  flex-wrap: wrap;
 }
 
 /* Steps CSS */
-
 .stepper {
   display: flex;
   align-items: center;
   background: #f5f5f5;
   border-radius: 100px;
-  margin: 150px 144px 87px 144px;
+  margin: 150px auto 87px;
   border-top: 1px solid #00000080;
   border-bottom: 1px solid #00000080;
+  max-width: calc(100% - 288px);
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .step {
@@ -102,6 +136,7 @@ body,
   position: relative;
   flex: 1;
   gap: 32px;
+  min-width: 200px;
 }
 
 .step-number {
@@ -115,6 +150,7 @@ body,
   height: 74px;
   border-radius: 50%;
   font-size: 32px;
+  flex-shrink: 0;
 }
 
 .step.active .step-number {
@@ -132,6 +168,7 @@ body,
   line-height: 140%;
   letter-spacing: 0%;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .active {
@@ -147,8 +184,10 @@ body,
 /* Information CSS */
 .information-container,
 .application-container {
-  margin: 0 82px 63px 82px;
+  margin: 0 auto 63px;
   border: 1px solid #d7d7d7;
+  max-width: calc(100% - 164px);
+  width: 100%;
 }
 
 .information-title,
@@ -177,10 +216,12 @@ body,
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
 .title-icon {
   cursor: pointer;
+  font-size: 24px;
 }
 
 .information-description,
@@ -205,7 +246,7 @@ body,
   flex-direction: column;
   gap: 24px;
   font-size: 20px;
-  padding: 60px 81px 130px 81px;
+  padding: 60px 81px 130px;
 }
 
 .application-first-box {
@@ -214,8 +255,18 @@ body,
 
 .date-wrapper {
   position: relative;
+  z-index: 0;
   width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
   max-width: 320px;
+}
+.information-date {
+  width: 100%;
+  padding: 8px 12px;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .information-input,
@@ -226,17 +277,17 @@ body,
   background-color: #f4f4f4;
   border: none;
   border-radius: 100px;
-  padding: 14px 40px 14px 20px;
+  padding: 14px 20px 14px 20px;
   font-size: 20px;
   font-weight: 400;
   font-size: 20px;
   line-height: 140%;
   letter-spacing: 0%;
   position: relative;
+  width: 100%;
 }
 
 .application-input {
-  width: 100%;
   height: 60px;
 }
 
@@ -266,7 +317,6 @@ body,
 
 .information-date-2 {
   max-width: 320px;
-  width: 100%;
 }
 
 .information-button {
@@ -285,6 +335,8 @@ body,
   letter-spacing: 0%;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  padding: 16px;
+  text-align: center;
 }
 
 .information-button.enabled {
@@ -304,8 +356,10 @@ body,
   font-size: 24px;
   line-height: 100%;
   letter-spacing: 0%;
-  padding-right: 20px;
-  height: 72px;
+  padding: 16px 20px;
+  height: auto;
+  width: 100%;
+  max-width: 320px;
 }
 
 .information-date::-webkit-calendar-picker-indicator {
@@ -313,6 +367,8 @@ body,
   z-index: 1;
   cursor: pointer;
 }
+
+
 
 .date-wrapper label {
   position: absolute;
@@ -325,19 +381,13 @@ body,
   font-size: 14px;
 }
 
-.information-date:focus + label,
-.information-date:not(:placeholder-shown):valid + label {
-  top: 6px;
-  font-size: 10px;
-  color: #666;
-}
 
 .information-second-box,
 .application-second-box {
   display: flex;
   flex-direction: column;
   font-size: 20px;
-  padding: 0 81px 78px 81px;
+  padding: 0 81px 78px;
   gap: 24px;
 }
 
@@ -360,13 +410,15 @@ body,
   display: flex;
   flex-direction: column;
   font-size: 20px;
-  padding: 0 81px 78px 81px;
+  padding: 0 81px 78px;
   gap: 15px;
 }
 
 .application-third-box {
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .application-ambulant {
@@ -379,11 +431,14 @@ body,
   align-items: center;
   background: #00b0660a;
   padding: 62px 37px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .checkbox-label {
   display: flex;
   flex-direction: column;
+  gap: 8px;
 }
 
 .tarif-checkbox1,
@@ -391,11 +446,13 @@ body,
   accent-color: black;
   width: 16px;
   height: 16px;
+  flex-shrink: 0;
 }
 
 .tarif-checkbox2 {
   visibility: hidden;
 }
+
 .checkbox-dark-text {
   font-family: "Roboto";
   font-weight: "Subheading/Font Weight";
@@ -428,8 +485,11 @@ body,
   line-height: 150%;
   letter-spacing: -1.9%;
   color: #000000cc;
-  margin-left: 144px;
-  margin-bottom: 88px;
+  margin: 0 auto 88px;
+  max-width: calc(100% - 288px);
+  width: 100%;
+  align-items: center;
+  cursor: pointer;
 }
 
 .complete-container {
@@ -438,6 +498,8 @@ body,
   align-items: center;
   background: #00b066;
   padding: 29px 142px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .complete-text {
@@ -447,6 +509,8 @@ body,
   line-height: 140%;
   letter-spacing: 0%;
   color: #ffffff;
+  flex: 1;
+  min-width: 300px;
 }
 
 .complete-btn {
@@ -465,13 +529,14 @@ body,
   line-height: 100%;
   letter-spacing: 0%;
   padding: 15.13px;
+  text-align: center;
 }
 
 .application-submit {
   display: flex;
   flex-direction: column;
   font-size: 20px;
-  padding: 0 81px 78px 81px;
+  padding: 0 81px 78px;
   gap: 24px;
 }
 
@@ -486,6 +551,429 @@ body,
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 20px;
-  width: 50%;
+  max-width: 50%;
   cursor: pointer;
+  padding: 16px 20px;
+  font-size: 18px;
+}
+
+/* Responsiveness */
+@media (max-width: 1440px) {
+  .nav-header {
+    margin: 0 40px;
+  }
+
+  .stepper {
+    margin: 120px auto 70px;
+    max-width: calc(100% - 200px);
+  }
+
+  .information-container,
+  .application-container {
+    max-width: calc(100% - 120px);
+  }
+
+  .plus-container {
+    max-width: calc(100% - 200px);
+  }
+
+  .active {
+    border-radius: 50px 0px 0 50px !important;
+  }
+
+  .active2 {
+    border-radius: 0 !important;
+  }
+}
+
+@media (max-width: 1292px) {
+  .nav-header {
+    margin: 0 30px;
+  }
+
+  .step-label {
+    font-size: 18px;
+  }
+
+  .information-title {
+    font-family: "RobotoBold";
+    font-size: 22px;
+  }
+
+  .application-title {
+    font-family: "RobotoBold";
+    font-size: 22px;
+  }
+
+  .information-first-box,
+  .application-first-box {
+    gap: 16px;
+  }
+
+  .application-input {
+    font-size: 18px;
+  }
+
+  .information-button {
+    font-size: 20px;
+    padding: 14px;
+  }
+
+  .step-number {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+
+  .information-ambulant {
+    padding: 40px 30px;
+  }
+
+  .complete-container {
+    padding: 25px 80px;
+  }
+
+  .active {
+    border-radius: 50px 0px 0 50px !important;
+  }
+
+  .active2 {
+    border-radius: 0 !important;
+  }
+
+  .information-description,
+  .application-tarif,
+  .application-description,
+  .complete-text,
+  .complete-btn,
+  .information-date-box,
+  .plus-container {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 992px) {
+  .nav-header {
+    margin: 0 20px;
+  }
+
+  .nav-menu {
+    height: auto;
+    padding: 15px;
+    gap: 20px;
+  }
+
+  .stepper {
+    margin: 100px auto 50px;
+    max-width: calc(100% - 100px);
+    border-radius: 50px;
+  }
+
+  .step {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .active {
+    border-radius: 50px 0 0 50px !important;
+  }
+
+  .active2 {
+    border-radius: 0 !important;
+  }
+
+  .active2 {
+    border-radius: 0 !important;
+  }
+
+  .information-container,
+  .application-container {
+    max-width: calc(100% - 80px);
+  }
+
+  .information-first-box,
+  .application-first-box,
+  .information-second-box,
+  .application-second-box,
+  .information-third-box,
+  .application-third-box,
+  .application-submit {
+    padding: 40px;
+  }
+
+  .information-inputs,
+  .application-inputs {
+    gap: 20px;
+  }
+
+  .plus-container {
+    max-width: calc(100% - 100px);
+    font-size: 24px;
+  }
+
+  .complete-container {
+    padding: 20px 40px;
+  }
+
+  .complete-text {
+    font-size: 28px;
+  }
+
+  .application-download {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-header {
+    margin: 0 15px;
+    padding: 8px;
+    height: auto;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .nav-help {
+    font-size: 16px;
+    gap: 15px;
+  }
+
+  .nav-logo {
+    width: 150px;
+    order: -1;
+    margin: 0 auto;
+  }
+
+  .nav-header-items ul {
+    gap: 15px;
+    font-size: 16px;
+  }
+
+  .nav-menu {
+    font-size: 16px;
+    gap: 15px;
+  }
+
+  .step {
+    min-width: 150px;
+    gap: 10px;
+  }
+
+  .step-number {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .step-label {
+    font-size: 20px;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .information-title,
+  .application-title {
+    font-family: "RobotoBold";
+    font-size: 20px;
+  }
+
+  .information-first-box,
+  .application-first-box {
+    padding: 30px;
+    gap: 12px;
+  }
+
+  .information-button {
+    font-size: 18px;
+    padding: 12px;
+  }
+
+  .application-submit {
+    padding: 0 20px 20px;
+  }
+
+  .application-download {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+
+  .information-ambulant {
+    padding: 30px 20px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .checkbox-label {
+    align-items: center;
+  }
+
+  .plus-container {
+    font-size: 20px;
+    margin-bottom: 60px;
+  }
+
+  .complete-container {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .complete-text {
+    min-width: 100%;
+  }
+
+  .active {
+    border-radius: 50px 0px 0 50px !important;
+  }
+
+  .active2 {
+    border-radius: 0 !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .nav-header {
+    margin: 0 10px;
+    padding: 10px 0;
+  }
+
+  .nav-help {
+    font-size: 14px;
+    gap: 10px;
+  }
+
+  .nav-header-items ul {
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .nav-menu {
+    font-size: 14px;
+    gap: 10px;
+  }
+
+  .stepper {
+    margin: 80px auto 30px;
+    max-width: calc(100% - 40px);
+    flex-direction: column;
+    border-radius: 30px;
+  }
+
+  .step {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .active {
+    border-radius: 30px 30px 0 0 !important;
+  }
+
+  .active2 {
+    border-radius: 0 !important;
+  }
+
+  .information-title,
+  .application-title {
+    font-family: "RobotoBold";
+    font-size: 18px;
+  }
+
+  .step-number {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .information-first-box,
+  .application-first-box {
+    padding: 20px;
+  }
+
+  .information-second-box,
+  .application-second-box,
+  .information-third-box,
+  .application-third-box,
+  .application-submit {
+    padding: 20px;
+  }
+
+  .information-button {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .application-submit {
+    padding: 0 10px 10px;
+  }
+
+  .complete-container {
+    padding: 15px;
+  }
+
+  .complete-text {
+    font-size: 24px;
+  }
+
+  .information-container,
+  .application-container {
+    max-width: calc(100% - 40px);
+  }
+
+  .plus-container {
+    max-width: calc(100% - 40px);
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+
+  .application-download {
+    background-position: right 8px center;
+  }
+
+  .application-third-box {
+    justify-content: center;
+  }
+
+  .application-button {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .nav-menu {
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .information-title,
+  .application-title {
+    font-family: "RobotoBold";
+    font-size: 16px;
+  }
+
+  .information-first-box,
+  .application-first-box {
+    padding: 15px;
+  }
+
+  .complete-text {
+    font-size: 20px;
+  }
+
+  .plus-container {
+    font-size: 16px;
+    gap: 8px;
+  }
+
+  .application-download {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+
+  .active {
+    border-radius: 30px 30px 0 0 !important;
+  }
+
+  .active2 {
+    border-radius: 0 !important;
+  }
 }
