@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../style/style.css";
 
 const FirstStep = ({
@@ -7,32 +7,41 @@ const FirstStep = ({
   isPersonValid,
   handleShowTarife,
   handleShowComplete,
-  addNewPerson,
 }) => {
-  return (
-    <div className="container">
-      <div className="stepper">
-        <div className="step active">
-          <div className="step-number">1</div>
-          <div className="step-label">Beitrag</div>
-        </div>
-        <div className="step">
-          <div className="step-number">2</div>
-          <div className="step-label">Antragsdaten</div>
-        </div>
-        <div className="step">
-          <div className="step-number">3</div>
-          <div className="step-label">Zusammenfassung</div>
-        </div>
-      </div>
+  const [collapsed, setCollapsed] = useState(persons.map(() => false)); // state to track collapse for each person
 
+  const toggleCollapse = (index) => {
+    setCollapsed((prev) => {
+      const newCollapsed = [...prev];
+      newCollapsed[index] = !newCollapsed[index]; // Toggle the collapsed state for this person
+      return newCollapsed;
+    });
+  };
+
+  return (
+    <>
       {persons.map((person, index) => (
         <div className="information-container" key={index}>
-          <div className="information-first-box">
-            <div className="information-title">
-              Informationen zum Online-Abschluss
+          <div
+            className={`information-first-box ${
+              collapsed[index] ? "padding-collapsed" : ""
+            }`}
+          >
+            <div className="information-title first-title">
+              <p>Informationen zum Online-Abschluss</p>
+              <i
+                className={`bi ${
+                  collapsed[index] ? "bi-chevron-down" : "bi-chevron-up"
+                }`}
+                onClick={() => toggleCollapse(index)} // Toggle collapse when clicked
+              ></i>
             </div>
-            <div className="information-description">
+            {/* Conditionally render the description and date input based on collapse state */}
+            <div
+              className={`information-description ${
+                collapsed[index] ? "collapsed" : ""
+              }`}
+            >
               Eine Rückdatierung auf den 01. des Monats ist bis zum 15. des
               Monats möglich. Online Abschlüsse sind möglich für:
               <br />
@@ -45,7 +54,11 @@ const FirstStep = ({
               Online Abschlüsse für 16 und 17 Jährige sind aktuell nicht möglich
               (PDF-Antrag nutzen)
             </div>
-            <div className="information-date-box">
+            <div
+              className={`information-date-box ${
+                collapsed[index] ? "collapsed" : ""
+              }`}
+            >
               <div className="date-wrapper">
                 <input
                   type="date"
@@ -140,25 +153,7 @@ const FirstStep = ({
           )}
         </div>
       ))}
-
-      {/* Plus Button */}
-      <div className="plus-container" onClick={addNewPerson}>
-        <i className="bi bi-plus-circle"></i>
-        Weitere Person versichern
-      </div>
-
-      {/* Complete Container */}
-      {persons.some((person) => person.showComplete) && (
-        <div className="complete-container">
-          <p className="complete-text">
-            Ihr ausgewählter Tarif: Beitrag für eine Person: 13,45 EUR / Monat
-          </p>
-          <button id="completeBtn" className="information-input complete-btn">
-            Jetzt Abschließen
-          </button>
-        </div>
-      )}
-    </div>
+    </>
   );
 };
 

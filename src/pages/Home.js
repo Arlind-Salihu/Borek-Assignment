@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "../style/style.css";
 import logo from "../assets/mister-spex-logo.svg";
 import FirstStep from "./FirstStep";
+import SecondStep from "./SecondStep";
 
 const Home = () => {
+  const [activeStep, setActiveStep] = useState(1);
   const [persons, setPersons] = useState([
     {
       startDate: "",
@@ -53,6 +55,10 @@ const Home = () => {
     setPersons(updatedPersons);
   };
 
+  const handleComplete = () => {
+    setActiveStep(2);
+  };
+
   return (
     <div className="main-container">
       {/* Navbar */}
@@ -94,16 +100,55 @@ const Home = () => {
           <a>Winter Deal</a>
         </div>
       </div>
+      <div className="container">
+        <div className="stepper">
+          <div className="step active">
+            <div className="step-number">1</div>
+            <div className="step-label">Beitrag</div>
+          </div>
+          <div className={`step ${activeStep === 2 ? "active active2" : ""}`}>
+            <div className="step-number">2</div>
+            <div className="step-label">Antragsdaten</div>
+          </div>
+          <div className={`step ${activeStep === 3 ? "active3" : ""}`}>
+            <div className="step-number">3</div>
+            <div className="step-label">Zusammenfassung</div>
+          </div>
+        </div>
+        {/* First Step */}
+        {activeStep === 1 && (
+          <FirstStep
+            persons={persons}
+            handlePersonChange={handlePersonChange}
+            isPersonValid={isPersonValid}
+            handleShowTarife={handleShowTarife}
+            handleShowComplete={handleShowComplete}
+            addNewPerson={addNewPerson}
+          />
+        )}
+        {activeStep === 2 && <SecondStep />}
+      </div>
+      {/* Plus Button */}
+      <div className="plus-container" onClick={addNewPerson}>
+        <i className="bi bi-plus-circle"></i>
+        Weitere Person versichern
+      </div>
 
-      {/* First Step */}
-      <FirstStep
-        persons={persons}
-        handlePersonChange={handlePersonChange}
-        isPersonValid={isPersonValid}
-        handleShowTarife={handleShowTarife}
-        handleShowComplete={handleShowComplete}
-        addNewPerson={addNewPerson}
-      />
+      {/* Complete Container */}
+      {persons.some((person) => person.showComplete) && (
+        <div className="complete-container">
+          <p className="complete-text">
+            Ihr ausgewählter Tarif: Beitrag für eine Person: 13,45 EUR / Monat
+          </p>
+          <button
+            id="completeBtn"
+            className="information-input complete-btn"
+            onClick={handleComplete}
+          >
+            Jetzt Abschließen
+          </button>
+        </div>
+      )}
     </div>
   );
 };
