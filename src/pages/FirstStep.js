@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../style/style.css";
+import { ToastContainer, toast } from "react-toastify";
 
 const FirstStep = ({
   persons,
@@ -11,6 +12,13 @@ const FirstStep = ({
 }) => {
   const [collapsed, setCollapsed] = useState(persons.map(() => false));
 
+  const handleActive = () => {
+    toast.success("Aktiviert!", {
+      position: "top-right",
+      autoClose: 3000,
+    });
+  };
+
   const toggleCollapse = (index) => {
     setCollapsed((prev) => {
       const newCollapsed = [...prev];
@@ -21,6 +29,7 @@ const FirstStep = ({
 
   return (
     <>
+      <ToastContainer />
       {persons.map((person, index) => (
         <div className="information-container" key={index}>
           <div
@@ -115,7 +124,9 @@ const FirstStep = ({
                   isPersonValid(person) ? "enabled" : ""
                 }`}
                 disabled={!isPersonValid(person)}
-                onClick={() => handleShowTarife(index)}
+                onClick={() => {
+                  handleShowTarife(index);
+                }}
               >
                 Tarife Anzeigen
               </button>
@@ -132,7 +143,12 @@ const FirstStep = ({
                       name="ambulant"
                       id="ambulant"
                       className="tarif-checkbox1"
-                      onClick={() => handleShowComplete(index)}
+                      onClick={(e) => {
+                        handleShowComplete(index);
+                        if (e.target.checked) {
+                          handleActive();
+                        }
+                      }}
                     />
                     Union Krankenversicherung AG
                   </span>

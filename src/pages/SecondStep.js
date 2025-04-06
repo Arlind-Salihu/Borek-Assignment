@@ -1,13 +1,23 @@
 import React from "react";
 import "../style/style.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const SecondStep = ({ persons, setActiveStep }) => {
+const SecondStep = ({ setActiveStep }) => {
   const handleBack = () => {
     setActiveStep(1);
   };
 
+  const handleDownload = () => {
+    toast.success("Dokumente wurden erfolgreich heruntergeladen!", {
+      position: "top-right",
+      autoClose: 3000,
+    });
+  };
+
   return (
     <div className="application-container">
+      <ToastContainer />
       <div className="application-first-box">
         <div className="application-title">
           <p>Persönliche Daten der zu versichernden Person</p>
@@ -44,6 +54,7 @@ const SecondStep = ({ persons, setActiveStep }) => {
           </div>
         </div>
       </div>
+
       <div className="application-second-box">
         <div className="application-title">
           Persönliche Daten der zu versichernden Person
@@ -69,6 +80,32 @@ const SecondStep = ({ persons, setActiveStep }) => {
           />
         </div>
       </div>
+
+      <div className="application-submit">
+        <div className="application-title">Ihre Vertragsunterlagen</div>
+        <div className="application-description">
+          Speichern Sie bitte vor dem Online-Abschluss die Allgemeinen
+          Vertragsunterlagen (Verbraucherinformationen und weitere Hinweise),
+          die Tarifunterlagen (Allgemeine Versicherungsbedingungen und
+          Produktinformationsblatt) sowie die Einwilligungs-und
+          Schweigepflichtentbindungserklärung (Datenschutzrechtliche
+          Einwilligungserklärung zu Ihren Gesundheitsdaten und sonstigen nach §
+          203 StGB geschützten Daten) oder drucken Sie diese aus. Diese
+          Unterlagen sind - neben dem Antrag, dem Versicherungsschein und
+          etwaigen Nachträgen - Grundlage Ihres Versicherungsvertrags.
+        </div>
+
+        <div className="application-document">
+          <input
+            type="text"
+            id="document"
+            className="information-input application-input application-download"
+            placeholder="Alle Dokumente Herunterladen"
+            onClick={handleDownload}
+          />
+        </div>
+      </div>
+
       <div className="application-third-box">
         <button
           id="backBtn"
