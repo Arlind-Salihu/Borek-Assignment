@@ -126,12 +126,9 @@ const Home = () => {
             addNewPerson={addNewPerson}
           />
         )}
+
+        {/* Second Step */}
         {activeStep === 2 && <SecondStep />}
-      </div>
-      {/* Plus Button */}
-      <div className="plus-container" onClick={addNewPerson}>
-        <i className="bi bi-plus-circle"></i>
-        Weitere Person versichern
       </div>
 
       {/* Complete Container */}

@@ -7,13 +7,14 @@ const FirstStep = ({
   isPersonValid,
   handleShowTarife,
   handleShowComplete,
+  addNewPerson,
 }) => {
-  const [collapsed, setCollapsed] = useState(persons.map(() => false)); // state to track collapse for each person
+  const [collapsed, setCollapsed] = useState(persons.map(() => false));
 
   const toggleCollapse = (index) => {
     setCollapsed((prev) => {
       const newCollapsed = [...prev];
-      newCollapsed[index] = !newCollapsed[index]; // Toggle the collapsed state for this person
+      newCollapsed[index] = !newCollapsed[index];
       return newCollapsed;
     });
   };
@@ -33,10 +34,9 @@ const FirstStep = ({
                 className={`bi ${
                   collapsed[index] ? "bi-chevron-down" : "bi-chevron-up"
                 }`}
-                onClick={() => toggleCollapse(index)} // Toggle collapse when clicked
+                onClick={() => toggleCollapse(index)}
               ></i>
             </div>
-            {/* Conditionally render the description and date input based on collapse state */}
             <div
               className={`information-description ${
                 collapsed[index] ? "collapsed" : ""
@@ -153,6 +153,11 @@ const FirstStep = ({
           )}
         </div>
       ))}
+      {/* Plus Button */}
+      <div className="plus-container" onClick={addNewPerson}>
+        <i className="bi bi-plus-circle"></i>
+        Weitere Person versichern
+      </div>
     </>
   );
 };

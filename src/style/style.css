@@ -4,6 +4,20 @@
   scroll-behavior: smooth;
 }
 
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto-Regular.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter-Regular.otf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
 body,
 .main-container {
   height: 100%;
@@ -131,14 +145,30 @@ body,
 }
 
 /* Information CSS */
-.information-container {
+.information-container,
+.application-container {
   margin: 0 82px 63px 82px;
   border: 1px solid #d7d7d7;
 }
 
-.information-title {
+.information-title,
+.application-title {
   font-weight: 700;
   font-size: 32px;
+  line-height: 140%;
+  letter-spacing: 0%;
+}
+
+.application-title {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.application-tarif {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 24px;
   line-height: 140%;
   letter-spacing: 0%;
 }
@@ -169,12 +199,17 @@ body,
   padding-bottom: 0 !important;
 }
 
-.information-first-box {
+.information-first-box,
+.application-first-box {
   display: flex;
   flex-direction: column;
   gap: 24px;
   font-size: 20px;
   padding: 60px 81px 130px 81px;
+}
+
+.application-first-box {
+  gap: 34px;
 }
 
 .date-wrapper {
@@ -183,7 +218,8 @@ body,
   max-width: 320px;
 }
 
-.information-input {
+.information-input,
+.application-input {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -197,6 +233,11 @@ body,
   line-height: 140%;
   letter-spacing: 0%;
   position: relative;
+}
+
+.application-input {
+  width: 100%;
+  height: 60px;
 }
 
 .information-select {
@@ -249,6 +290,19 @@ body,
   cursor: pointer;
 }
 
+.application-button {
+  border: 2px solid #00b066;
+  background-color: #00b066;
+  color: white;
+  cursor: pointer;
+  font-family: "Roboto";
+  font-weight: Weight Bold;
+  font-size: 24px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  padding-right: 20px;
+}
+
 .information-date::-webkit-calendar-picker-indicator {
   opacity: 0;
   z-index: 1;
@@ -273,7 +327,8 @@ body,
   color: #666;
 }
 
-.information-second-box {
+.information-second-box,
+.application-second-box {
   display: flex;
   flex-direction: column;
   font-size: 20px;
@@ -281,21 +336,36 @@ body,
   gap: 24px;
 }
 
-.information-inputs {
+.information-inputs,
+.application-inputs {
   display: flex;
   gap: 32px;
+}
+
+.application-inputs {
+  width: 100%;
 }
 
 .typed {
   color: #000000;
 }
 
-.information-third-box {
+.information-third-box,
+.application-third-box {
   display: flex;
   flex-direction: column;
   font-size: 20px;
   padding: 0 81px 78px 81px;
   gap: 15px;
+}
+
+.application-third-box {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.application-ambulant {
+  padding: 0;
 }
 
 .information-ambulant {
@@ -322,7 +392,7 @@ body,
   visibility: hidden;
 }
 .checkbox-dark-text {
-  font-family: "Subheading/Font Family";
+  font-family: "Roboto";
   font-weight: "Subheading/Font Weight";
   font-size: "Subheading/Size Medium";
   line-height: 120%;
@@ -335,7 +405,7 @@ body,
 
 .checkbox-light-text {
   color: #757575;
-  font-family: "Body/Font Family";
+  font-family: "Roboto";
   font-weight: "Body/Font Weight Regular";
   font-size: "Body/Size Medium";
   line-height: 140%;
